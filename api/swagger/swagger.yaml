@@ -35,6 +35,20 @@ paths:
     post:
       description: add a new game system to the list
       parameters:
+        - name: gamesystem
+          in: body
+          description: The game system to create
+          schema:
+            $ref: "#/definitions/GameSystem"
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetGameSystemResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
         - in: body
           name: gamesystem
           description: The game system to create
