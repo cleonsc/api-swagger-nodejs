@@ -102,6 +102,37 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /videogames:
+    x-swagger-router-controller: game.controller
+    get:
+      description: get the game list
+      operationId: getGames
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetVideoGameListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: add a new game system to the list
+      parameters:
+        - in: body
+          name: videogame
+          description: The videogame to create
+          schema:
+            $ref: "#/definitions/VideoGame"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetVideoGameResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
