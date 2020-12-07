@@ -230,6 +230,66 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/GetGameSystemResponse"
+  VideoGame:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the game
+      developer:
+        type: string
+        description: Developer/Publisher of the game
+      gamesystem:
+        type: string
+        description: Name of the game system
+      genre:
+        type: string
+        description: Name of the genre/style of the game
+      year:
+        type: number
+        description: Release year
+    required:
+      - name
+      - developer
+      - gamesystem
+      - genre
+      - year
+  GetVideoGameResponse:
+    type: object
+    properties:
+      id:
+        type: number
+        description: identifier
+      name:
+        type: string
+        description: Name of the game
+      developer:
+        type: string
+        description: Developer of the game
+      gamesystem:
+        type: string
+        description: Name of the game system
+      genre:
+        type: string
+        description: Name of the genre of the game
+      year:
+        type: number
+        description: Release year
+    required:
+      - id
+      - name
+      - developer
+      - gamesystem
+      - genre
+      - year
+  GetVideoGameListResponse:
+    required:
+      - videogames
+    properties:
+      videogames:
+        type: array
+        items:
+          $ref: "#/definitions/GetVideoGameResponse"
   GeneralResponse:
     type: object
     properties:
