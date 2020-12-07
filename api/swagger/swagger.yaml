@@ -1,0 +1,97 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Game Collector App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /gamesystems:
+    x-swagger-router-controller: gamesystem.controller
+    get:
+      description: get the game system list
+      operationId: getGameSystems
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetGameSystemListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: add a new game system to the list
+      parameters:
+        - in: body
+          name: gamesystem
+          description: The game system to create
+          schema:
+            $ref: "#/definitions/GameSystem"
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetGameSystemResponse"
+        default:
+          description: Error
+          schema: 
+            $ref: "#/definitions/ErrorResponse"
+
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  GameSystem:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the game system
+      description:
+        type: string
+        description: Description of the game system
+    required:
+      - name
+      - description
+  GetGameSystemResponse:
+    type: object
+    properties:
+      id:
+        type: number
+        description: identifier
+      name:
+        type: string
+        description: Name of the game system
+      description:
+        type: string
+        description: Description of the game system
+    required:
+      - name
+      - description
+  GetGameSystemListResponse:
+    required:
+      - gamesystems
+    properties:
+      gamesystems:
+        type: array
+        items:
+          $ref: "#/definitions/GetGameSystemResponse"
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
