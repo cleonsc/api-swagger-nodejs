@@ -49,21 +49,59 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /gamesystems/{id}:
+    x-swagger-router-controller: gamesystem.controller
+    get:
+      description: get a game system
+      parameters:
+        - name: id
+          in: path
+          type: number
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetGameSystemResponse"
+    put:
+      description: update a game system
+      parameters:
+        - name: id
+          in: path
+          description: game system id
+          type: number
+          required: true
         - in: body
           name: gamesystem
-          description: The game system to create
+          description: The game system to update
           schema:
             $ref: "#/definitions/GameSystem"
       responses:
-        "201":
+        "200":
           description: Success
           schema:
             $ref: "#/definitions/GetGameSystemResponse"
         default:
           description: Error
-          schema: 
+          schema:
             $ref: "#/definitions/ErrorResponse"
-
+    delete:
+      description: delete a game system
+      parameters:
+        - name: id
+          description: game system id
+          type: number
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
