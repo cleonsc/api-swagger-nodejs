@@ -112,6 +112,27 @@ paths:
     get:
       description: get the game list
       operationId: getGames
+      parameters:
+        - name: name
+          in: query
+          type: string
+          required: false
+        - name: developer
+          in: query
+          type: string
+          required: false
+        - name: gamesystem
+          in: query
+          type: string
+          required: false
+        - name: genre
+          in: query
+          type: string
+          required: false
+        - name: year
+          in: query
+          type: number
+          required: false
       responses:
         "200":
           description: Success
@@ -195,7 +216,6 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
