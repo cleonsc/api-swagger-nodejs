@@ -23,6 +23,11 @@ paths:
     get:
       description: get the game system list
       operationId: getGameSystems
+      parameters:
+        - name: name
+          in: query
+          type: string
+          required: false
       responses:
         "200":
           description: Success
