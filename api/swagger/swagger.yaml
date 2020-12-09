@@ -355,5 +355,9 @@ definitions:
     required:
       - message
     properties:
+      code:
+        type: number        
       message:
+        type: string
+      description:
         type: string
